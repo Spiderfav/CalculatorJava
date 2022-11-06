@@ -1,4 +1,4 @@
-package numstack;
+package specificstack;
 
 import entry.BadTypeException;
 import entry.Entry;
