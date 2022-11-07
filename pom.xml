@@ -7,10 +7,13 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>The CS2800 Calculator Project</name>
   <description>"A Software Project to be (incrementally) delivered to a client: A calculator."</description>
+  
   <properties>
-    <maven.compiler.source>1.11</maven.compiler.source>
-    <maven.compiler.target>1.11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
   </properties>
+  
   <dependencies>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -29,6 +32,7 @@
       <version>13</version>
     </dependency>
   </dependencies>
+  
   <build>
     <resources>
       <resource>
@@ -60,6 +64,29 @@
                 <option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:8001</option>
               </options>
             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+       <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.3.0</version>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
+              <mainClass>Driver</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
