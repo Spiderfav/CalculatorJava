@@ -1,36 +1,40 @@
-
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 
 /**
- * The Model Class.
- *
- * 
+ * Provides the GUI view of the app.
  * @author Rui Favinha
  *
  */
 
+
+
 public class MainView {
   
   @FXML
-  private Pane mainPane;
+  private ToggleGroup calculatorType;
+  
+  @FXML
+  private TextField expressionField;
 
   @FXML
-  private Label numberLabel;
-  
+  private RadioButton infixToggle;
+
   @FXML
-  private Button addOneButton;
-  
+  private Button resultButton;
+
   @FXML
-  void isPressed(ActionEvent event) {
-    int i = Integer.parseInt(numberLabel.getText());
-    i += 1;
-    numberLabel.setText(String.valueOf(i));
-  }
+  private Label resultText;
+
+  @FXML
+  private RadioButton reversePolishToggle;
   
 }
+
+  
+
 

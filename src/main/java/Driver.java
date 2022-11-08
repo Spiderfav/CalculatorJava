@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 
 /**
- * Driver class deals with the modelling of the app.
+ * Driver class deals creating the given view unto the monitor.
  * @author Rui Favinha
  */
 
@@ -14,17 +14,21 @@ import javafx.stage.Stage;
 public class Driver extends Application {
 
   /**
-   * Creates a view with the given passed arguments.
+   * Launches a view with the given passed arguments.
    */
   
   public static void main(String[] args) {
     launch(args);
   }
-
+  
+  /**
+   * Creates view from given fxml file.
+   */
+  
   @Override
   public void start(Stage primaryStage) throws Exception {
     Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
-    Scene scene = new Scene(root, 800, 800);
+    Scene scene = new Scene(root, 600, 400);
     primaryStage.setScene(scene);
     primaryStage.show();    
   }
