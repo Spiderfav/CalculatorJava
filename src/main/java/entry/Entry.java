@@ -89,12 +89,8 @@ public class Entry {
    * @return True if the given entry is identically equal to self entry.
    */
   
-  public boolean equals(Entry secondEntry) {
-    if (this.type == secondEntry.getType() && this.str == secondEntry.getString()) {
-      return true;
-    }
-    
-    return false;
+  public boolean equals(Entry secondEntry) { 
+    return (this.type == secondEntry.getType() && this.str == secondEntry.getString());
   }
 
   /**
