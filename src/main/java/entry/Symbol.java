@@ -61,5 +61,21 @@ public enum Symbol {
     return text;
   }
   
+  /**
+   * Function that takes in a given text and tries to convert to a Symbol.
+   * @return Symbol representation of the string.
+   */
+  
+  public static Symbol convertString(String value) {
+    for (Symbol symbol : Symbol.values()) {
+      
+      if (value == symbol.toString()) {
+        return symbol;  
+      }
+    }
+    
+    return Symbol.INVALID;
+      
+  }
   
 }
