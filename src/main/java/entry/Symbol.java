@@ -69,7 +69,8 @@ public enum Symbol {
   public static Symbol convertString(String value) {
     for (Symbol symbol : Symbol.values()) {
       
-      if (value == symbol.toString()) {
+      if (value.equals(symbol.toString())) {
+        
         return symbol;  
       }
     }
