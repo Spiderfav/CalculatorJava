@@ -98,7 +98,7 @@ public class RevPolishCalc implements Calculator {
   }
   
   /**
-   * Function to compute a mathematical answer, from a given string expression.
+   * Function to check the type of a given string value.
    * Returns 1 if it is a valid symbol, 2 if it is a valid float and 0 if it is not valid.
    * @param evaluate given as the string to evaluate.
    * @return the type for the variable.
