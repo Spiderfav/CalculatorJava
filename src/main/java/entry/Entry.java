@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class Entry {
   
-  private float number;
+  private Float number;
   private Symbol other;
   private String str;
   private Type type;
@@ -33,6 +33,7 @@ public class Entry {
    */
 
   public Entry(Symbol newSymbol) {
+    this.number = null;
     this.other = newSymbol;
     this.str = newSymbol.toString();
     this.type = Type.SYMBOL;
@@ -77,7 +78,7 @@ public class Entry {
    */
   
   public Float getValue() throws BadTypeException {
-    if (this.number == 0.0f) { 
+    if (this.number == null) { 
       throw new BadTypeException(); 
     }
     return this.number;
