@@ -6,4 +6,6 @@ You may edit it as you like, but please do not remove the default topics or the 
 
 For the markers of the Project:
 
-    - I have realised that some of my commits have an account name as "Spiderfav". Now I don't exactly know how since my machines are using the access tokens created to commit the files. I've tried to change it now but if any commit appears as "Spiderfav" it really should appear as "Rui Favinha". "Spiderfav" is just my normal GitHub and online user handle.
+    - I have realised that some of my commits have an account name as "Spiderfav" or "Rui Favinha". 
+    
+Now I don't exactly know how since my machines are using the access tokens created to commit the files. I've tried to change it now but if any commit appears as "Spiderfav" or "Rui Favinha", it really should appear as "Favinha Rui (2021) ZKAC432". "Spiderfav" is just my normal GitHub and online user handle.
