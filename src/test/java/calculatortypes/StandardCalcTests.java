@@ -27,7 +27,7 @@ class StandardCalcTests {
   void evaluate_simple_return() {
     StandardCalc calculator = new StandardCalc();
     
-    assert (calculator.evaluate("0") == 0);
+    assert (calculator.evaluate("1") == 1);
   }
   
   
