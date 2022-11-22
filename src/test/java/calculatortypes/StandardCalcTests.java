@@ -23,6 +23,13 @@ class StandardCalcTests {
     assert (calculator.evaluate("0") == 0);
   }
   
+  @Test // Test 3
+  void evaluate_simple_return() {
+    StandardCalc calculator = new StandardCalc();
+    
+    assert (calculator.evaluate("0") == 0);
+  }
+  
   
 
 }

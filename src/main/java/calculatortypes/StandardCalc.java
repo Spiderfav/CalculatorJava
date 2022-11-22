@@ -1,16 +1,14 @@
-/**
- * 
- */
 package calculatortypes;
 
 /**
  * @author ruifavinha
  *
  */
-public class StandardCalc {
+public class StandardCalc implements Calculator {
   
   public float evaluate(String toEvaluate) {
-    return 0;
+    
+    return Float.valueOf(toEvaluate);
     
   }
 }
