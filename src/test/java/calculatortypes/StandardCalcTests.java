@@ -71,11 +71,23 @@ class StandardCalcTests {
         });
   }
   
+  
   @Test // Test 5
   void check_convert_medium() throws InvalidExpression {
     StandardCalc calculator = new StandardCalc();
     
     assertEquals(calculator.convertPolish("5 * 3 + 2"), "5 3 * 2 + ");
+  }
+  
+  @Test // Test 4
+  void check_convert_wrong_with_bracket() throws InvalidExpression {
+    StandardCalc calculator = new StandardCalc();
+    
+    assertThrows(InvalidExpression.class, 
+        () -> {
+          calculator.convertPolish("( 5 + 3 ( )");
+        });
+        
   }
   
   @Test // Test 5

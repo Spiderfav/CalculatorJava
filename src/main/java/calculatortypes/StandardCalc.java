@@ -114,7 +114,13 @@ public class StandardCalc implements Calculator {
     while (values.isEmpty() == false) {
       try {
 
-        prefix = prefix + values.pop() + " ";
+        Symbol onList = values.pop();
+        
+        if (onList == Symbol.LEFT_BRACKET) {
+          throw new InvalidExpression();
+        }
+        
+        prefix = prefix + onList + " ";
 
       } catch (Exception e) {
         throw new InvalidExpression();
