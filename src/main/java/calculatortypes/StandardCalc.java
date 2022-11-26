@@ -1,9 +1,7 @@
 package calculatortypes;
 
-import entry.BadTypeException;
 import entry.Symbol;
 import specificstack.OpStack;
-import stack.EmptyStackExtension;
 
 /**
  * @author ruifavinha
