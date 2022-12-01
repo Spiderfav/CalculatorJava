@@ -41,112 +41,112 @@ public class StandardCalc implements Calculator {
 
     for (int i = 0; i < array.length; i++) {
 
-      if (checkType(array[i]) == 0) {
-        throw new InvalidExpression();
-      } 
+      switch (checkType(array[i])) {
 
-      if (checkType(array[i]) == 1) {
-        
-        // If the symbol found is a right bracket, pop all in the stack until we find a left.
+        case 0:
+          throw new InvalidExpression();
 
-        // If no left bracket is found and it is the end of the stack, InvalidExpression is thrown.
-        
-        if (Symbol.convertString(array[i]) == Symbol.RIGHT_BRACKET) {
-          
-          while (true) {
+        case 1:
+          // If the symbol found is a right bracket, pop all in the stack until we find a left.
+          // If no left bracket is found and it is the end of the stack, InvalidExpression thrown.
+
+          if (Symbol.convertString(array[i]) == Symbol.RIGHT_BRACKET) {
+
+            while (true) {
+
+              try {
+                Symbol justPopped = values.pop();
+
+                if (justPopped == Symbol.LEFT_BRACKET) {
+                  break;
+                }
+
+                prefix = prefix + justPopped + " ";
+
+              } catch (Exception e) {
+                throw new InvalidExpression();
+              } 
+            }          
+          }
+
+
+          // If the opStack is not empty, compare the current operation with the ones on stack.
+          // Continue comparing until we reach an operation with a lower value or equal to current.
+
+          if (values.isEmpty() == false) {
+
+
+            Symbol onTop = null;
 
             try {
-              Symbol justPopped = values.pop();
-              
-              if (justPopped == Symbol.LEFT_BRACKET) {
-                break;
-              }
-
-              prefix = prefix + justPopped + " ";
+              onTop = values.pop();
+              values.push(onTop);
 
             } catch (Exception e) {
               throw new InvalidExpression();
-            } 
-          }          
-        }
-        
-        
-        // If the opStack is not empty, compare the current operation with the ones on stack.
-        // Continue comparing until we reach an operation with a lower value or equal to current.
-        
-        if (values.isEmpty() == false) {
-          
-          
-          Symbol onTop = null;
-          
-          try {
-            onTop = values.pop();
-            values.push(onTop);
-            
-          } catch (Exception e) {
-            e.printStackTrace();
-          }
-          
-          Symbol toAdd = Symbol.convertString(array[i]);
-          
-          while (onTop.ordinal() < toAdd.ordinal()) {
-            
-            if (toAdd == Symbol.LEFT_BRACKET || onTop == Symbol.LEFT_BRACKET) { 
-              break; 
             }
 
-            try {
-              
-              onTop = values.pop();
-              
-              if (onTop == Symbol.LEFT_BRACKET) {
-                values.push(onTop);
-                break;
+            Symbol toAdd = Symbol.convertString(array[i]);
+
+            while (onTop.ordinal() < toAdd.ordinal()) {
+
+              if (toAdd == Symbol.LEFT_BRACKET || onTop == Symbol.LEFT_BRACKET) { 
+                break; 
               }
-              
-              prefix = prefix + onTop.toString() + " ";
-              
-              if (values.isEmpty()) {
-                break;
-              }              
-            } catch (Exception e) {
-              throw new InvalidExpression();
-            } 
+
+              try {
+
+                onTop = values.pop();
+
+                if (onTop == Symbol.LEFT_BRACKET) {
+                  values.push(onTop);
+                  break;
+                }
+
+                prefix = prefix + onTop.toString() + " ";
+
+                if (values.isEmpty()) {
+                  break;
+                }              
+              } catch (Exception e) {
+                throw new InvalidExpression();
+              } 
+            }
+
           }
-                    
-        }
-        
-        // If there are no symbols on the stack or it is a left bracket,
-        // Or if the value of the current symbol is lower than on stack, it is added to string.
-        
-        if (Symbol.convertString(array[i]) != Symbol.RIGHT_BRACKET) {
-          values.push(Symbol.convertString(array[i]));
-        }
+
+          // If there are no symbols on the stack or it is a left bracket,
+          // Or if the value of the current symbol is lower than on stack, it is added to string.
+
+          if (Symbol.convertString(array[i]) != Symbol.RIGHT_BRACKET) {
+            values.push(Symbol.convertString(array[i]));
+          }
+          break;
+
+          // If it is a number, add it directly to the string to later evaluate. 
+        case 2:
+          prefix = prefix + array[i] + " ";
+          break;
+
+
+        // This default statement will never be executed as checkType function only returns 0,1,2.
+        // However, default will sanity check and break out.
+        default:
+          break;
+
       }
-      
-      
-      // If it is a number, add it directly to the string to later evaluate. 
-
-      if (checkType(array[i]) == 2) {
-
-        prefix = prefix + array[i] + " ";
-
-      }
-
     }
 
-
-    // Once we reach the end of the original string, we pop all the operators left in the stack.
-    
+    // Once we reach the end of the string, we pop all the operators left in the stack.
     while (values.isEmpty() == false) {
       try {
 
         Symbol onList = values.pop();
-        
+
         if (onList == Symbol.LEFT_BRACKET) {
           throw new InvalidExpression();
         }
-        
+
         prefix = prefix + onList + " ";
 
       } catch (Exception e) {
@@ -154,11 +154,9 @@ public class StandardCalc implements Calculator {
       } 
     }
 
-
     // Return the string it has been fully converted.
-    
-    return prefix;
 
+    return prefix;
   }
 
   /**
@@ -170,7 +168,7 @@ public class StandardCalc implements Calculator {
 
   public int checkType(String evaluate) {
 
-    
+
     // Symbol can always be evaluated, and as such we need to check against what we don't want.
 
     // Re-using the function from RevPolishCalc however, we need to check for brackets.
@@ -179,7 +177,7 @@ public class StandardCalc implements Calculator {
     if (symb != Symbol.INVALID) {
       return 1;
     }
-    
+
     return rpCalc.checkType(evaluate);
   }
 }
