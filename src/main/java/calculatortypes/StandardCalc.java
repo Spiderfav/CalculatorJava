@@ -4,7 +4,9 @@ import entry.Symbol;
 import specificstack.OpStack;
 
 /**
- * @author ruifavinha
+ * StandardCalc produces a mathematical result from a given mathematical string expression.
+ * It achieves this by converting a normal expression to a reverse polish and evaluating it.
+ * @author Rui Favinha
  *
  */
 public class StandardCalc implements Calculator {
@@ -13,13 +15,23 @@ public class StandardCalc implements Calculator {
 
   private OpStack values = new OpStack();
 
-
+  /**
+   * Function to compute a mathematical answer, from a given string expression.
+   * @param toEvaluate given as the string to calculate result from.
+   * @return The answer calculated as a float.
+   * @throws InvalidExpression when an expression cannot be calculated.
+   */
 
   public float evaluate(String toEvaluate) throws InvalidExpression {
     return rpCalc.evaluate(convertPolish(toEvaluate));
   }
 
-
+  /**
+   * Function to convert an infix expression to reverse polish expression as a string.
+   * @param infix given as the string to convert to reverse polish.
+   * @return The string given formatted for reverse polish.
+   * @throws InvalidExpression when an expression cannot be calculated.
+   */
 
   public String convertPolish(String infix) throws InvalidExpression {
 
@@ -34,7 +46,11 @@ public class StandardCalc implements Calculator {
       } 
 
       if (checkType(array[i]) == 1) {
+        
+        // If the symbol found is a right bracket, pop all in the stack until we find a left.
 
+        // If no left bracket is found and it is the end of the stack, InvalidExpression is thrown.
+        
         if (Symbol.convertString(array[i]) == Symbol.RIGHT_BRACKET) {
           
           while (true) {
@@ -54,6 +70,9 @@ public class StandardCalc implements Calculator {
           }          
         }
         
+        
+        // If the opStack is not empty, compare the current operation with the ones on stack.
+        // Continue comparing until we reach an operation with a lower value or equal to current.
         
         if (values.isEmpty() == false) {
           
@@ -77,6 +96,7 @@ public class StandardCalc implements Calculator {
             }
 
             try {
+              
               onTop = values.pop();
               
               if (onTop == Symbol.LEFT_BRACKET) {
@@ -90,17 +110,22 @@ public class StandardCalc implements Calculator {
                 break;
               }              
             } catch (Exception e) {
-              e.printStackTrace();
-              break;
+              throw new InvalidExpression();
             } 
           }
                     
         }
         
+        // If there are no symbols on the stack or it is a left bracket,
+        // Or if the value of the current symbol is lower than on stack, it is added to string.
+        
         if (Symbol.convertString(array[i]) != Symbol.RIGHT_BRACKET) {
           values.push(Symbol.convertString(array[i]));
         }
       }
+      
+      
+      // If it is a number, add it directly to the string to later evaluate. 
 
       if (checkType(array[i]) == 2) {
 
@@ -111,6 +136,8 @@ public class StandardCalc implements Calculator {
     }
 
 
+    // Once we reach the end of the original string, we pop all the operators left in the stack.
+    
     while (values.isEmpty() == false) {
       try {
 
@@ -128,9 +155,10 @@ public class StandardCalc implements Calculator {
     }
 
 
+    // Return the string it has been fully converted.
+    
     return prefix;
 
-    // Need to check if no other operations and 
   }
 
   /**
@@ -145,6 +173,7 @@ public class StandardCalc implements Calculator {
     
     // Symbol can always be evaluated, and as such we need to check against what we don't want.
 
+    // Re-using the function from RevPolishCalc however, we need to check for brackets.
     Symbol symb = Symbol.convertString(evaluate);
 
     if (symb != Symbol.INVALID) {
