@@ -4,7 +4,6 @@ import java.util.function.Consumer;
 
 /**
  * This interface determines the basis for what the GUIView and AsciiView must provide.
- * 
  * @author Rui Favinha
  *
  */
