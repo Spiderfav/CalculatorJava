@@ -12,8 +12,9 @@ public class AsciiView implements ViewInterface {
 
   private String expression;
   public Runnable thread = null;
-  public Consumer<OpType> currentType = null;
+  public Consumer<OpType> currentType;
   private String answer;
+  public boolean isReverse;
 
   /**
    * Function to provide the main menu for the text based version of the calculator.
@@ -75,8 +76,10 @@ public class AsciiView implements ViewInterface {
     String inReverse = sc.nextLine();  
     if (inReverse.equals("N")) {
       currentType.accept(OpType.STANDARD);
+      isReverse = false;
     } else {
       currentType.accept(OpType.REVPOLISH);
+      isReverse = true;
     }
   }
 
@@ -99,7 +102,7 @@ public class AsciiView implements ViewInterface {
    * @return the string to calculate.
    */
   public String getExpression() {
-    return expression;
+    return expression + "v" + isReverse;
   }
 
   /**
