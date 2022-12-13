@@ -4,6 +4,9 @@ import calculatortypes.InvalidExpression;
 import calculatortypes.RevPolishCalc;
 import calculatortypes.StandardCalc;
 
+
+
+
 /*
  *  UPDATED: 12-12-2022
  *  Lines 27 till 49 were taken from @author Dave's implementation of the calculator.
@@ -21,13 +24,13 @@ public final class CalcModel {
 
   private RevPolishCalc prefix = new RevPolishCalc();
   private StandardCalc infix = new StandardCalc();
-  
-  private float previousResult = 0;
-  
+
+  private float previousAnswers = 0;
+
   /**
    * Constructor must be final so that only one instance of the class can be created.
    */
-  private CalcModel() {}
+  public CalcModel() {}
 
   /**
    * Creation of the instance of the class.
@@ -46,16 +49,16 @@ public final class CalcModel {
     }
     return instance;
   }
-  
+
   /**
    * Function to return the last result calculated by the calculator.
    * @return The last answer calculated as a float.
    */
-  
+
   public float getPreviousResult() {
-    return this.previousResult;
+    return this.previousAnswers;
   }
-  
+
   /**
    * Function to compute a mathematical answer, given the type of calculator.
    * @param expression given as the string to calculate result from.
@@ -63,13 +66,13 @@ public final class CalcModel {
    * @return The answer calculated as a float.
    * @throws InvalidExpression when an expression cannot be calculated.
    */
-  
+
   public float evaluate(String expression, boolean infixOrNot) throws InvalidExpression {
 
     if (infixOrNot) {
-      return (this.previousResult = infix.evaluate(expression));
+      return (this.previousAnswers = infix.evaluate(expression));
     }
-    return (this.previousResult = prefix.evaluate(expression));
+    return (this.previousAnswers = prefix.evaluate(expression));
   }
-  
+
 }
