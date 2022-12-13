@@ -38,6 +38,10 @@ public class StandardCalc implements Calculator {
     String prefix = "";
 
     String[] array = infix.split(" ");
+    
+    if (checkType(array[array.length - 1]) == 1) {
+      throw new InvalidExpression();
+    }
 
     for (int i = 0; i < array.length; i++) {
 

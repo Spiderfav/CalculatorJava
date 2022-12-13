@@ -118,6 +118,7 @@ public class RevPolishCalc implements Calculator {
       
       // Checking if it can be converted to a float.
       
+      @SuppressWarnings("unused")
       float numb = Float.valueOf(evaluate);
       
       return 2;

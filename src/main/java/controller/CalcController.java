@@ -1,8 +1,8 @@
 package controller;
 
 import calcmodel.CalcModel;
-import calculatortypes.Calculator;
 import calculatortypes.InvalidExpression;
+import view.OpType;
 import view.ViewInterface;
 
 /**
@@ -24,15 +24,14 @@ public class CalcController {
    *
    */
   public void calculate() throws InvalidExpression {
-    String[] expression = newView.getExpression().split("v");
-    boolean isInfix = Boolean.parseBoolean(expression[1]);
-    
-    Double a = (double) model.evaluate(expression[0], isInfix);
+    String expression = newView.getExpression();
+
+    Double a = (double) model.evaluate(expression, isInfix);
     newView.setAnswer(a.toString());
   }
   
   /**
-   * Constructor to provide a Singleton instance of the class.
+   * A Constructor to provide a Singleton instance of the class.
    *
    */
   public CalcController(ViewInterface v) {
@@ -44,15 +43,35 @@ public class CalcController {
    *
    */
   public CalcController() {}
+  
+  
+  /**
+   * Function that, depending on the OpType set from a button, will update for expression.
+   *
+   */
+  private void changeType(OpType t) {
+    if (t.equals(OpType.REVPOLISH)) {
+      isInfix = false;
+      
+    } else if (t.equals(OpType.STANDARD)) {
+      isInfix = true;
+    }
+  }
 
   /**
-   * Function that sends the data to the CalcModel and retrieves a calculation.
-   * It then sends the answer to display to the user.
+   * Function that attaches the observers to the required input and text fields.
+   * It then sends the data to the required functions when changes are made in the app.
    *
    */
   public void addView(ViewInterface v) {
     newView = v;
-    v.addCalcObserver(this::calculateAction);
+    v.addCalcObserver(() -> {
+      try {
+        calculate();
+      } catch (InvalidExpression e) {
+        newView.setAnswer(e.getMessage());
+      }
+    });
     v.addTypeObserver(this::changeType);
   }
 }

@@ -14,7 +14,8 @@ public class AsciiView implements ViewInterface {
   public Runnable thread = null;
   public Consumer<OpType> currentType;
   private String answer;
-  public boolean isReverse;
+  @SuppressWarnings("unused")
+  private String prevAnswer;
 
   /**
    * Function to provide the main menu for the text based version of the calculator.
@@ -76,10 +77,8 @@ public class AsciiView implements ViewInterface {
     String inReverse = sc.nextLine();  
     if (inReverse.equals("N")) {
       currentType.accept(OpType.STANDARD);
-      isReverse = false;
     } else {
       currentType.accept(OpType.REVPOLISH);
-      isReverse = true;
     }
   }
 
@@ -101,14 +100,16 @@ public class AsciiView implements ViewInterface {
    * Function to retrieve the expression to be calculated from the view.
    * @return the string to calculate.
    */
+  @Override
   public String getExpression() {
-    return expression + "v" + isReverse;
+    return expression;
   }
 
   /**
    * Function to update the answer field for the given expression.
    * @param str as the string answer calculated.
    */
+  @Override
   public void setAnswer(String str) {
     answer = str;
   }
@@ -117,6 +118,7 @@ public class AsciiView implements ViewInterface {
    * Function to add a thread to the running view to keep checking for updated values.
    * @param f as the thread to observe the changes.
    */
+  @Override
   public void addCalcObserver(Runnable f) {
     thread = f;
   }
@@ -125,8 +127,11 @@ public class AsciiView implements ViewInterface {
    * Function to add a thread to to the running view to keep checking for an OpType change.
    * @param i as the OpType of the given calculation
    */
+  @Override
   public void addTypeObserver(Consumer<OpType> i) {
     currentType = i;
   }
 
+
 }
+

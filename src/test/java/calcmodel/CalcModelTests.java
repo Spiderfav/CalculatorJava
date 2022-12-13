@@ -6,6 +6,7 @@ import calculatortypes.InvalidExpression;
 
 class CalcModelTests {
 
+  @SuppressWarnings("unused")
   @Test
   void test_creation() {
     CalcModel calculator = new CalcModel();

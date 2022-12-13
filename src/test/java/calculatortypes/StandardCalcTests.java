@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 class StandardCalcTests {
 
   // Simple test to create a new StandardCalc.
+  @SuppressWarnings("unused")
   @Test // Test 1
   void test_creation() {
     StandardCalc calculator = new StandardCalc();

@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 class RevPolishCalcTests {
 
   // Testing the creation of a new Calculator
+  @SuppressWarnings("unused")
   @Test // Test 1
   void test_creation() {
     RevPolishCalc revPolish = new RevPolishCalc();

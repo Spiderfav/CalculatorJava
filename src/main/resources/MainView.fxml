@@ -32,7 +32,7 @@
                   <ToggleGroup fx:id="calculatorType" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="reversePolishToggle" layoutX="439.0" layoutY="48.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="Reverse Polish" toggleGroup="$calculatorType" />
+            <RadioButton fx:id="reversePolishToggle" layoutX="439.0" layoutY="48.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="130.0" text="Reverse Polish" toggleGroup="$calculatorType" selected="true"/>
          </children>
       </AnchorPane>
    </children>

@@ -37,5 +37,3 @@ public interface ViewInterface {
    */
   public void addTypeObserver(Consumer<OpType> i);
 }
-
-
