@@ -1,36 +1,32 @@
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import controller.CalcController;
+import view.AsciiView;
 
 
 /**
  * Driver class deals creating the given view unto the monitor.
+ * Can create a terminal view or a GUI depending on how it was launched.
  * @author Rui Favinha
  */
 
 
-public class Driver extends Application {
+public class Driver {
 
   /**
    * Launches a view with the given passed arguments.
+   * If launched through the terminal, will create a terminal view.
+   * Else it will launch a GUI calculator.
    */
-  
+
   public static void main(String[] args) {
-    launch(args);
+    
+    if (System.console() != null) {
+      AsciiView v = new AsciiView();
+      new CalcController(v);
+      v.menu();
+    } else {
+      Launcher.startJavaFX(new CalcController(), args);
+    }
   }
-  
-  /**
-   * Creates view from given fxml file.
-   */
-  
-  @Override
-  public void start(Stage primaryStage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
-    Scene scene = new Scene(root, 600, 400);
-    primaryStage.setScene(scene);
-    primaryStage.show();    
-  }
+
 
 }

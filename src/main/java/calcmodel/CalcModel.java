@@ -5,10 +5,9 @@ import calculatortypes.RevPolishCalc;
 import calculatortypes.StandardCalc;
 
 
-
-
 /*
  *  UPDATED: 12-12-2022
+
  *  Lines 27 till 49 were taken from @author Dave's implementation of the calculator.
  *  This is so that the implementation is now fully correct.
  *  @author Rui Favinha
