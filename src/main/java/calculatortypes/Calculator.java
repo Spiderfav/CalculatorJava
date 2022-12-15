@@ -16,4 +16,12 @@ public interface Calculator {
    */
   
   public float evaluate(String expression) throws InvalidExpression;
+  
+  /**
+   * Function to check the type of a given string value.
+   * Returns 1 if it is a valid symbol, 2 if it is a valid float and 0 if it is not valid.
+   * @param evaluate given as the string to evaluate.
+   * @return the type for the variable.
+   */
+  public int checkType(String evaluate);
 }
